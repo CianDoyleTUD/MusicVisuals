@@ -38,7 +38,7 @@ public class AudioCircle {
         cSize = PApplet.map(mv.getSmoothedAmplitude(), 0, 1, 0, cy) + 500;
         cRadius = (cSize / 2);  
         
-        mv.fill(cycle, 255, 255);
+        mv.fill(cycle, 255, 255, 50);
         
         // Main circle
         mv.circle(cx, cy, cSize);

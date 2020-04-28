@@ -4,11 +4,11 @@ import ie.tudublin.*;
 
 public class MainVisual extends Visual {
     AudioCircle ac;
-    int effect = 0;
+    Menu options;
 
     public void settings()
     {
-        size(1024, 720);
+        size(1280, 900);
         //fullScreen();
 
         // Use this to make fullscreen and use P3D for 3D graphics
@@ -18,42 +18,37 @@ public class MainVisual extends Visual {
     public void setup()
     {
         startMinim();
-            
+          
         loadAudio("heroplanet.mp3");   
-        
+        getAudioPlayer().mute();
         ac = new AudioCircle(this);
+        options = new Menu(this);
     }
 
     public void keyPressed()
     {
         if (key == ' ')
         {
-            effect++;
             getAudioPlayer().cue(0);
             getAudioPlayer().play();
+        }
+        if (keyCode == UP)
+        {
+           options.toggle();
         }
     }
 
     public void draw()
     {
-        background(100);
-        try
-        {
-            // Call this if you want to use FFT data
-            calculateFFT(); 
-        }
-        catch(VisualException e)
-        {
-            e.printStackTrace();
-        }
-        // Call this is you want to use frequency bands
-        calculateFrequencyBands(); 
+        background(0);
 
-        // Call this is you want to get the average amplitude
         calculateAverageAmplitude();
         
-        if (effect == 1) {
-            ac.render();  
+        ac.render();  
+
+        if (options.enabled) {
+            options.render();
         }
+    
     }
 }
