@@ -17,7 +17,14 @@ public class AudioCircle {
 
     public void render()
     {
+
+        mv.colorMode(PApplet.HSB);
+        mv.fill(255, 255, 255);
+
+        PApplet.println("::" + mv.getSmoothedAmplitude());
         
+        mv.circle(cx, cy, PApplet.map(mv.getSmoothedAmplitude(), 0, 1, 0, cy) + 500 );
+
     }
 
 }
