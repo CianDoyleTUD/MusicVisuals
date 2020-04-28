@@ -7,6 +7,9 @@ public class Menu {
     MainVisual mv;
     int scrH;
     int scrW;
+    int dropdowns = 0;
+    int tab = 0;
+    int menuH = 50;
     boolean enabled = true;
 
     public Menu(MainVisual mv)
@@ -16,17 +19,27 @@ public class Menu {
         scrW = this.mv.width;
     }
 
-    public void toggle() {
+    public void toggle() 
+    {
         enabled = !enabled;
     }
-
 
     public void render()
     {
 
         mv.stroke(140, 255, 255);
         mv.fill(140, 255, 255, 50);
-        mv.rect(0, 0, scrW - 1, 50);
+        mv.rect(0, 0, scrW - 1, menuH);
+
+        mv.fill(0, 255, 255, 255);
+        mv.textSize(32);
+        mv.text(this.tab, 10, 35); 
+
+        for (int i = 0; i < dropdowns; i++) {
+
+            mv.rect(0, (i * 50) + menuH, scrW - 1, 50);
+
+        }
 
         /*float posx = PApplet.map(mv.getAudioPlayer().position(), 0, mv.getAudioPlayer().length(), 0, 1000);
         mv.stroke(0,200,0);
