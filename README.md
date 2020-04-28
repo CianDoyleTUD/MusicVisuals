@@ -1,8 +1,8 @@
 # Music Visualiser Project
 
-Name:
+Name: Cian Doyle
 
-Student Number: 
+Student Number: C18430304
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
