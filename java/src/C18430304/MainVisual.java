@@ -4,6 +4,7 @@ import ie.tudublin.*;
 
 public class MainVisual extends Visual {
     AudioCircle ac;
+    int effect = 0;
 
     public void settings()
     {
@@ -27,6 +28,7 @@ public class MainVisual extends Visual {
     {
         if (key == ' ')
         {
+            effect++;
             getAudioPlayer().cue(0);
             getAudioPlayer().play();
         }
@@ -34,7 +36,7 @@ public class MainVisual extends Visual {
 
     public void draw()
     {
-        background(0);
+        background(100);
         try
         {
             // Call this if you want to use FFT data
@@ -50,6 +52,8 @@ public class MainVisual extends Visual {
         // Call this is you want to get the average amplitude
         calculateAverageAmplitude();
         
-        ac.render();
+        if (effect == 1) {
+            ac.render();  
+        }
     }
 }
