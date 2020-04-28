@@ -3,15 +3,11 @@ package C18430304;
 import ie.tudublin.*;
 
 public class MainVisual extends Visual {
-    WaveForm wf;
-    AudioBandsVisual abv;
+    AudioCircle ac;
 
     public void settings()
     {
         size(1024, 500);
-        
-        // Use this to make fullscreen
-        //fullScreen();
 
         // Use this to make fullscreen and use P3D for 3D graphics
         //fullScreen(P3D, SPAN); 
@@ -20,16 +16,10 @@ public class MainVisual extends Visual {
     public void setup()
     {
         startMinim();
-                
-        // Call loadAudio to load an audio file to process 
-        //loadAudio("heroplanet.mp3");   
-
+            
+        loadAudio("heroplanet.mp3");   
         
-        // Call this instead to read audio from the microphone
-        startListening(); 
-        
-        wf = new WaveForm(this);
-        abv = new AudioBandsVisual(this);
+        ac = new AudioCircle(this);
     }
 
     public void keyPressed()
@@ -57,8 +47,8 @@ public class MainVisual extends Visual {
         calculateFrequencyBands(); 
 
         // Call this is you want to get the average amplitude
-        calculateAverageAmplitude();        
-        wf.render();
-        abv.render();
+        calculateAverageAmplitude();
+        
+        ac.render();
     }
 }

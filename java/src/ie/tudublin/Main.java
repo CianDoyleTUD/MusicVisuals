@@ -1,6 +1,6 @@
 package ie.tudublin;
 
-import C18430304.*;
+import C18430304.MainVisual;
 
 public class Main
 {	
