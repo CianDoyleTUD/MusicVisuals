@@ -1,6 +1,7 @@
 package C18430304;
 
 import ie.tudublin.*;
+import processing.core.PApplet;
 
 public class MainVisual extends Visual {
 
@@ -8,6 +9,8 @@ public class MainVisual extends Visual {
     Menu options;
     Stars stars;
     float angle;
+    float rotY;
+    float[] bands;
 
     public void settings()
     {
@@ -23,7 +26,6 @@ public class MainVisual extends Visual {
         startMinim();
           
         loadAudio("heroplanet.mp3");   
-        getAudioPlayer().mute();
         ac = new AudioCircle(this);
         options = new Menu(this);
         stars = new Stars(this);
@@ -35,6 +37,7 @@ public class MainVisual extends Visual {
         {
             getAudioPlayer().cue(0);
             getAudioPlayer().play();
+            //getAudioPlayer().mute();
         }
         if (keyCode == UP)
         {
@@ -53,15 +56,30 @@ public class MainVisual extends Visual {
 
     public void draw()
     {
+
         background(0);
+        calculateAverageAmplitude();   
+        try
+        {
+            calculateFFT();
+        }
+        catch(VisualException e)
+        {
+            e.printStackTrace();
+        }
+        calculateFrequencyBands();
 
-        calculateAverageAmplitude();
+        bands = getSmoothedBands();
 
+        rotY += 0.01;   
+
+        translate(width / 2, height / 2, 0);
         switch(options.tab) {
             case 0:
                 ac.render();
                 break;
             case 1:
+                rotateY(rotY);
                 stars.render();
                 break;
             default:

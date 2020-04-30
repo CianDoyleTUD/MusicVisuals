@@ -1,8 +1,9 @@
 package C18430304;
 
 import processing.core.*;
+import ie.tudublin.*;
 
-public class Menu {
+public class Menu extends Visual {
     
     MainVisual mv;
     int scrH;
@@ -10,7 +11,7 @@ public class Menu {
     int dropdowns = 0;
     int tab = 0;
     int menuH = 50;
-    boolean enabled = true;
+    boolean enabled = false;
 
     public Menu(MainVisual mv)
     {
@@ -26,7 +27,7 @@ public class Menu {
 
     public void render()
     {
-
+        
         mv.stroke(140, 255, 255);
         mv.fill(140, 255, 255, 50);
         mv.rect(0, 0, scrW - 1, menuH);

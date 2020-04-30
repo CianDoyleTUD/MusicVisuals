@@ -12,10 +12,17 @@ public class Star {
     
     public Star()
     {
+        this.reset();
+    }
+
+    public void reset() 
+    {
 
         randAng = PApplet.map((float)Math.random(), 0, 1, 0, 2 * pi);
         angX = (float)Math.cos(randAng);
         angY = (float)Math.sin(randAng); 
+        angZ = (float)Math.cos(PApplet.map((float)Math.random(), 0, 1, 0, 2 * pi));
 
     }
+
 }
