@@ -3,9 +3,11 @@ package C18430304;
 import ie.tudublin.*;
 
 public class MainVisual extends Visual {
+
     AudioCircle ac;
     Menu options;
     Stars stars;
+    float angle;
 
     public void settings()
     {
@@ -37,15 +39,15 @@ public class MainVisual extends Visual {
         if (keyCode == UP)
         {
            options.toggle();
-           stars.reset();
+           stars.initialize();
         }
         if (keyCode == RIGHT)
         {
-           options.tab++;
+            options.tab++;
         }
         if (keyCode == LEFT && options.tab > 0)
         {
-           options.tab--;
+            options.tab--;
         }
     }
 
@@ -54,7 +56,7 @@ public class MainVisual extends Visual {
         background(0);
 
         calculateAverageAmplitude();
-        
+
         switch(options.tab) {
             case 0:
                 ac.render();
