@@ -55,8 +55,16 @@ public class AudioCircle {
 
             //spikeLen = PApplet.map(mv.getSmoothedAmplitude(), 0, 1, 0, 1500) + (float)(Math.random() * variance);
 
-            spikeLen = mv.bands[0];
+            if (theta * 10 % 10 > 5) {
+                variance = (theta * 10 % 10) * 15;
+            }
+            else {
+               
+                variance = ((theta + 5) - (theta * 10 % 10)) * 15;
+            }
 
+            spikeLen = ((mv.bands[Math.round(theta)]) + (int)(Math.random() * 10) + variance) / 3;
+            
             PApplet.println(mv.bands[0]);
 
             mv.stroke(PApplet.map(theta, 0, 2 * pi, 0, 255), 255, 255);

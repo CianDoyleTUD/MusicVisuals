@@ -25,10 +25,12 @@ public class MainVisual extends Visual {
     {
         startMinim();
           
-        loadAudio("heroplanet.mp3");   
+        loadAudio("letgo.mp3");   
         ac = new AudioCircle(this);
         options = new Menu(this);
         stars = new Stars(this);
+        colorMode(PApplet.HSB);
+
     }
 
     public void keyPressed()
@@ -74,13 +76,16 @@ public class MainVisual extends Visual {
         rotY += 0.01;   
 
         translate(width / 2, height / 2, 0);
+
+        PApplet.println(frameRate);
+        
         switch(options.tab) {
             case 0:
-                ac.render();
-                break;
-            case 1:
                 rotateY(rotY);
                 stars.render();
+                break;
+            case 1:
+                ac.render();
                 break;
             default:
                 break;

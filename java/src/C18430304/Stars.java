@@ -7,14 +7,13 @@ public class Stars extends Visual {
 
     MainVisual mv;
     float cx, cy;
-    int starMax = 10;
+    int starMax = 100;
     int cycle;
-    int bgCycle = 127;
     float posX, posY;
     float rotY, rotX;
+    boolean exploded = false;
 
     Star[] stars = new Star[starMax];
-
 
     public Stars(MainVisual mv)
     {
@@ -22,6 +21,7 @@ public class Stars extends Visual {
         this.initialize();
         cy = this.mv.height / 2;
         cx = this.mv.width / 2;
+        mv.sphereDetail(15);
     }
 
     public void initialize()
@@ -39,26 +39,19 @@ public class Stars extends Visual {
     {   
 
         rotY += 0.01;
-        rotX += 0.01;
+        rotX += 0.01;                               
 
-        //mv.background(bgCycle, 120, 255);
-        
         if (cycle == 255) 
         {
             cycle = 0;
         }  
-        else if (bgCycle == 255)
-        {
-            bgCycle = 0;
-        }
         else {
             cycle++;
-            bgCycle++;
-        }
+        }   
 
         for (int i = 0; i < starMax; i++) {
 
-            if (stars[i].angX > cx || stars[i].angX < (0-cx) || stars[i].angY > cy || stars[i].angY < (0 - cy)) {
+            if (stars[i].angX > cx || stars[i].angX < (0-cx) || stars[i].angY > cy || stars[i].angY < (0 - cy)) { // When spheres reach edge of screen
                 stars[i].reset();
             }
 
@@ -67,9 +60,11 @@ public class Stars extends Visual {
             mv.translate(stars[i].angX, stars[i].angY, stars[i].angZ);
             mv.rotateY(rotY);
             mv.rotateX(rotX);
-            mv.stroke(cycle, 255, 255, 150);
+            //mv.stroke(cycle, 255, 255, 150);
+            mv.stroke(stars[i].colour, 255, 255, 150);
             mv.noFill();
-            mv.sphere(50);     
+            mv.scale(PApplet.map(mv.getSmoothedAmplitude(), 0, 200, 0, 100));
+            mv.sphere(100);     
 
             mv.popMatrix();
 
@@ -79,5 +74,6 @@ public class Stars extends Visual {
 
         }
 
-    }
+     }
+
 }

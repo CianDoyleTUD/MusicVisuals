@@ -28,6 +28,9 @@ public class Menu extends Visual {
     public void render()
     {
         
+        mv.pushMatrix();
+
+        mv.translate(0 - scrW, 0 - scrH);
         mv.stroke(140, 255, 255);
         mv.fill(140, 255, 255, 50);
         mv.rect(0, 0, scrW - 1, menuH);
@@ -41,6 +44,8 @@ public class Menu extends Visual {
             mv.rect(0, (i * 50) + menuH, scrW - 1, 50);
 
         }
+
+        mv.popMatrix();
 
         /*float posx = PApplet.map(mv.getAudioPlayer().position(), 0, mv.getAudioPlayer().length(), 0, 1000);
         mv.stroke(0,200,0);
