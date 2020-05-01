@@ -14,12 +14,12 @@ public class AudioCircle {
     float sin;
     float cxEdge;
     float cyEdge;
+    float variance;
+    float rotY;
     float spikeLen = 10;
     float pi = (float)Math.PI;
     float step = (2 * pi) / 360;
     int linesPerBand = (int)((2 * pi) / step) / 6;
-
-    int[] totalBands = new int[6];
 
     public AudioCircle(MainVisual mv)
     {
@@ -56,29 +56,33 @@ public class AudioCircle {
             int degree = ((int)PApplet.map(theta, 0, 2 * pi, 0, (int)((2 * pi) / step)));
             int bandNum = (int)PApplet.map(theta, 0, 2 * pi, 0, 6); 
 
-            float variance = degree + (((linesPerBand / 2) + bandNum) + (bandNum * linesPerBand));
-           
+            if(((linesPerBand / 2) + bandNum) + (bandNum * linesPerBand)  <= 0 )
+            {
+                variance = PApplet.map((((linesPerBand / 2) + bandNum) + (bandNum * linesPerBand)) - degree, -29, 0, 0, (mv.bands[bandNum] / 8));
+            }
+            else {
+                variance = PApplet.map((((linesPerBand / 2) + bandNum) + (bandNum * linesPerBand)) - degree, 0, 31, 0, (mv.bands[bandNum] / 8));
+            }
 
-            spikeLen = ( (mv.bands[bandNum] / 3) + (variance / 5));// + (int)(Math.random() * 10);
-
-            
-
-            totalBands[bandNum]++;
-
-            //PApplet.println("bandNum : " + bandNum);
-            //PApplet.println("linesPerBand : " + linesPerBand);
-            //PApplet.println("i : " + (int)PApplet.map(theta, 0, 2 * pi, 0, (int)((2 * pi) / step)));
-            //PApplet.println("value: " + (((linesPerBand / 2) + bandNum) + (bandNum * linesPerBand))     );
+            if (  degree < ((linesPerBand / 2) + bandNum) + (bandNum * linesPerBand))   
+            {
+                spikeLen = ((mv.bands[bandNum] / 8) - variance) + (int)(Math.random() * 5);
+            }
+            else 
+            {
+                spikeLen = ((mv.bands[bandNum] / 8) + variance) + (int)(Math.random() * 5);
+            }
 
             mv.stroke(PApplet.map(theta, 0, 2 * pi, 0, 255), 255, 255);
 
-            if (degree == ((linesPerBand / 2) + bandNum) + (bandNum * linesPerBand))
-            {
-                mv.stroke(140, 255, 255);
-            }
+            mv.pushMatrix();    
 
-            mv.line(cxEdge, cyEdge, (cRadius + spikeLen) * (float)Math.cos(theta), (cRadius + spikeLen) * (float)Math.sin(theta));
-            mv.line(0, 0, cxEdge, cyEdge);
+            rotY += 0.00001;
+            mv.rotateZ(rotY);
+
+            mv.line(cxEdge, cyEdge, (cRadius - spikeLen) * (float)Math.cos(theta), (cRadius - spikeLen) * (float)Math.sin(theta));
+
+            mv.popMatrix();
 
         }
        
