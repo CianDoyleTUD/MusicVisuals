@@ -1,9 +1,8 @@
 package C18430304;
 
 import processing.core.*;
-import ie.tudublin.*;
 
-public class Stars extends Visual {
+public class Stars {
 
     MainVisual mv;
     float cx, cy;
@@ -62,12 +61,21 @@ public class Stars extends Visual {
             mv.rotateX(rotX);
             //mv.stroke(cycle, 255, 255, 150);
             mv.stroke(stars[i].colour, 255, 255, 150);
-            mv.noFill();
+            //mv.noFill();
+            mv.fill(cycle, 255, 255, 150);
             mv.scale(PApplet.map(mv.getSmoothedAmplitude(), 0, 200, 0, 100));
-            mv.sphere(100);     
-
+            mv.sphere(100);  
+            
             mv.popMatrix();
 
+            if (i != starMax - 1) 
+            {
+                //mv.stroke(stars[i].colour, 255, 255, 150);
+                mv.stroke(cycle, 255, 255, 150);
+                mv.line(stars[i].angX, stars[i].angY, stars[i].angZ, 0, 0, 0);
+                mv.line(stars[i].angX, stars[i].angY, stars[i].angZ, stars[i+1].angX, stars[i+1].angY, stars[i+1].angZ);
+            }
+           
             stars[i].angX += stars[i].angX * (mv.getAmplitude() / 3);
             stars[i].angY += stars[i].angY * (mv.getAmplitude() / 3);  
             stars[i].angZ += stars[i].angZ * (mv.getAmplitude() / 3); 

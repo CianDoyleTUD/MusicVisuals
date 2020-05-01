@@ -8,6 +8,7 @@ public class MainVisual extends Visual {
     AudioCircle ac;
     Menu options;
     Stars stars;
+    Wave waves;
     float angle;
     float rotY;
     float[] bands;
@@ -29,7 +30,12 @@ public class MainVisual extends Visual {
         ac = new AudioCircle(this);
         options = new Menu(this);
         stars = new Stars(this);
+        waves = new Wave(this); 
         colorMode(PApplet.HSB);
+
+        getAudioPlayer().cue(0);
+        getAudioPlayer().play();
+        getAudioPlayer().mute();
 
     }
 
@@ -39,7 +45,7 @@ public class MainVisual extends Visual {
         {
             getAudioPlayer().cue(0);
             getAudioPlayer().play();
-            //getAudioPlayer().mute();
+            getAudioPlayer().mute();
         }
         if (keyCode == UP)
         {
@@ -77,15 +83,19 @@ public class MainVisual extends Visual {
 
         translate(width / 2, height / 2, 0);
 
-        PApplet.println(frameRate);
+        //PApplet.println(frameRate);
         
         switch(options.tab) {
             case 0:
                 rotateY(rotY);
+                rotateX(rotY);
                 stars.render();
                 break;
             case 1:
                 ac.render();
+                break;
+            case 2:
+                waves.render();
                 break;
             default:
                 break;

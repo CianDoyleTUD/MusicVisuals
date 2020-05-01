@@ -1,15 +1,12 @@
 package C18430304;
 
-import processing.core.*;
-import ie.tudublin.*;
-
-public class Menu extends Visual {
+public class Menu {
     
     MainVisual mv;
     int scrH;
     int scrW;
     int dropdowns = 0;
-    int tab = 0;
+    int tab = 1;
     int menuH = 50;
     boolean enabled = false;
 

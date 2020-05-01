@@ -17,7 +17,9 @@ public class AudioCircle {
     float spikeLen = 10;
     float pi = (float)Math.PI;
     float step = (2 * pi) / 360;
-    float variance = 50;
+    int linesPerBand = (int)((2 * pi) / step) / 6;
+
+    int[] totalBands = new int[6];
 
     public AudioCircle(MainVisual mv)
     {
@@ -35,7 +37,7 @@ public class AudioCircle {
         
         //mv.stroke(120, 255, 255);
 
-        cSize = PApplet.map(mv.getSmoothedAmplitude(), 0, 1, 0, cy) + 500;
+        cSize = PApplet.map(mv.getSmoothedAmplitude(), 0, 1, 0, cy) + 500; 
         cRadius = (cSize / 2);  
         
         mv.fill(0, 0, 0);
@@ -50,26 +52,33 @@ public class AudioCircle {
 
             cxEdge = cRadius * (float)Math.cos(theta);
             cyEdge = cRadius * (float)Math.sin(theta); 
+
+            int degree = ((int)PApplet.map(theta, 0, 2 * pi, 0, (int)((2 * pi) / step)));
+            int bandNum = (int)PApplet.map(theta, 0, 2 * pi, 0, 6); 
+
+            float variance = degree + (((linesPerBand / 2) + bandNum) + (bandNum * linesPerBand));
+           
+
+            spikeLen = ( (mv.bands[bandNum] / 3) + (variance / 5));// + (int)(Math.random() * 10);
+
             
-            variance = mv.getSmoothedAmplitude() * 400;
 
-            //spikeLen = PApplet.map(mv.getSmoothedAmplitude(), 0, 1, 0, 1500) + (float)(Math.random() * variance);
+            totalBands[bandNum]++;
 
-            if (theta * 10 % 10 > 5) {
-                variance = (theta * 10 % 10) * 15;
-            }
-            else {
-               
-                variance = ((theta + 5) - (theta * 10 % 10)) * 15;
-            }
-
-            spikeLen = ((mv.bands[Math.round(theta)]) + (int)(Math.random() * 10) + variance) / 3;
-            
-            PApplet.println(mv.bands[0]);
+            //PApplet.println("bandNum : " + bandNum);
+            //PApplet.println("linesPerBand : " + linesPerBand);
+            //PApplet.println("i : " + (int)PApplet.map(theta, 0, 2 * pi, 0, (int)((2 * pi) / step)));
+            //PApplet.println("value: " + (((linesPerBand / 2) + bandNum) + (bandNum * linesPerBand))     );
 
             mv.stroke(PApplet.map(theta, 0, 2 * pi, 0, 255), 255, 255);
 
+            if (degree == ((linesPerBand / 2) + bandNum) + (bandNum * linesPerBand))
+            {
+                mv.stroke(140, 255, 255);
+            }
+
             mv.line(cxEdge, cyEdge, (cRadius + spikeLen) * (float)Math.cos(theta), (cRadius + spikeLen) * (float)Math.sin(theta));
+            mv.line(0, 0, cxEdge, cyEdge);
 
         }
        
