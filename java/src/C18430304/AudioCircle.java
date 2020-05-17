@@ -20,8 +20,6 @@ public class AudioCircle {
     public AudioCircle(MainVisual mv)
     {
         this.mv = mv;
-        cy = this.mv.height / 2;
-        cx = this.mv.width / 2;
     }
 
     public void render()

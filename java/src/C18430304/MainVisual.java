@@ -18,10 +18,6 @@ public class MainVisual extends Visual {
     public void settings()
     {
         size(1280, 900, P3D);
-        //fullScreen();
-
-        // Use this to make fullscreen and use P3D for 3D graphics
-        //fullScreen(P3D, SPAN); 
     }
 
     public void setup()
@@ -103,6 +99,9 @@ public class MainVisual extends Visual {
                 break;
             case 3:
                 spiral.render();
+                break;
+            case 4:
+                waves.render();
                 break;
             default:
                 break;

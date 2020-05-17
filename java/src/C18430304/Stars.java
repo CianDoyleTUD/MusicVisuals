@@ -10,7 +10,6 @@ public class Stars {
     int cycle;
     float posX, posY;
     float rotY, rotX;
-    boolean exploded = false;
 
     Star[] stars = new Star[starMax];
 
@@ -74,8 +73,9 @@ public class Stars {
                 mv.stroke(cycle, 255, 255, 150);
                 mv.line(stars[i].angX, stars[i].angY, stars[i].angZ, 0, 0, 0);
                 mv.line(stars[i].angX, stars[i].angY, stars[i].angZ, stars[i+1].angX, stars[i+1].angY, stars[i+1].angZ);
-            }
-           
+            }   
+            
+            // Continue on the trajectory with speed that is related to the current volume of the song
             stars[i].angX += stars[i].angX * (mv.getAmplitude() / 3);
             stars[i].angY += stars[i].angY * (mv.getAmplitude() / 3);  
             stars[i].angZ += stars[i].angZ * (mv.getAmplitude() / 3); 

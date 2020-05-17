@@ -18,17 +18,16 @@ public class Tree {
 
     public void branch(float h) {
         
-        h *= 0.66;
+        h *= 0.66; // every branch is 2/3 the size of the last one
 
-        if (h > 2) {
-          mv.pushMatrix();    // Save the current state of transformation (i.e. where are we now)
-          mv.rotate(theta);   // Rotate by theta
-          mv.line(0, 0, 0, -h);  // Draw the branch
-          mv.translate(0, -h); // Move to the end of the branch
-          branch(h);       // Ok, now call myself to draw two new branches!!
-          mv.popMatrix();     // Whenever we get back here, we "pop" in order to restore the previous matrix state
+        if (h > 2) { // Keep drawing branches until they are smaller than 2 pixels.
+          mv.pushMatrix();    
+          mv.rotate(theta);   
+          mv.line(0, 0, 0, -h); 
+          mv.translate(0, -h);
+          branch(h);      
+          mv.popMatrix();   
           
-          // Repeat the same thing, only branch off to the "left" this time!
           mv.pushMatrix();
           mv.rotate(-theta);
           mv.line(0, 0, 0, -h);
@@ -39,22 +38,6 @@ public class Tree {
 
     }
 
-    public void fractal(float h) {
-        
-        h *= 1.2;
-
-        if (h < 200) {
-
-          mv.pushMatrix();   
-          mv.rotate(theta);   
-          mv.sphere(h/5);  
-          mv.translate(0, h);
-          fractal(h);
-          mv.popMatrix();     
-          
-        }
-
-    }
 
     void render() {
 
@@ -67,15 +50,14 @@ public class Tree {
 
         a += 0.25;
         theta = PApplet.radians(a);
+        // Drawing 4 trees 90 degrees from eachother, makes a cool effect.
+        branch(300);
+        mv.rotate(pi/2);
+        branch(300);
+        mv.rotate(pi/2);
+        branch(300);
+        mv.rotate(pi/2);
+        branch(300);
 
-        branch(300);
-        mv.rotate(pi/2);
-        branch(300);
-        mv.rotate(pi/2);
-        branch(300);
-        mv.rotate(pi/2);
-        branch(300);
-        
-        mv.rotateX(0.1f);
     }
 }
