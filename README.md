@@ -5,7 +5,7 @@ Name: Cian Doyle
 Student Number: C18430304
 
 # Description of the assignment
-For this assignment, I decided to create some aesthetically pleasing visuals to enjoy while listening to music.
+For this assignment, I decided to create a compilation of aesthetically pleasing visuals to enjoy while listening to music.
 I created visuals which are affected by the music being played, and some which are not. The list of visuals is:
 - An audio band visualiser, which reacts to the audio frequencies and volume.
 - A visual which implodes stars from the centre of the screen at a speed relative to how loud the music is
