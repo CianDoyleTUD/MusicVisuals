@@ -24,7 +24,7 @@ public class MainVisual extends Visual {
     {
         startMinim();
           
-        loadAudio("letgo.mp3");   
+        loadAudio("heroplanet.mp3");   
         ac = new AudioCircle(this);
         mainMenu = new Menu(this);
         stars = new Stars(this);
