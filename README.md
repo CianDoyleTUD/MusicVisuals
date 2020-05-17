@@ -14,7 +14,7 @@ I created visuals which are affected by the music being played, and some which a
 - A simulated low poly ocean which uses perlin noise
 
 # Instructions
-Simply compile the program and use space to begin playing the song. I have left it to play the song provided, however 
+Simply download and compile the program and use space to begin playing the song. I have left it to play the song provided, however 
 you can use other songs by adding them to the data folder and changing line 27 of MainVisual.java to
 ``` 
 loadAudio("filename.mp3");
