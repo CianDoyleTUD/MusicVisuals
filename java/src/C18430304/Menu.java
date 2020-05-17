@@ -1,14 +1,13 @@
 package C18430304;
 
-public class Menu {
+public class Menu { // Simple main menu with controls
     
     MainVisual mv;
     int scrH;
     int scrW;
     int menuH;
     int menuW;
-    int dropdowns = 0;
-    int tab = 1;
+    int tab = 0;
 
     public Menu(MainVisual mv)
     {
@@ -29,15 +28,10 @@ public class Menu {
         mv.fill(140, 255, 255, 50);
         mv.rect(0, 0, menuW, menuH);
 
-        mv.fill(111, 255, 255, 255);
-        mv.textSize(32);
-        mv.text("Enter", menuW/2, menuH/2); 
-
-        for (int i = 0; i < dropdowns; i++) {
-
-            //mv.rect(0, (i * 50) + menuH, scrW - 1, 50);
-
-        }
+        mv.fill(0,0,255, 255);
+        mv.textSize(25);
+        mv.translate(0, 0);
+        mv.text("Controls:\n\nArrow keys to cycle through visuals\n\nSpace bar to play the music\n\nEnjoy :)", menuW/6, menuH/4); 
 
         mv.popMatrix();
        

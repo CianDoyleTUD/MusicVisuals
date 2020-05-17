@@ -1,6 +1,6 @@
 package C18430304;
 
-import processing.core.*;
+import processing.core.PApplet;
 
 public class AudioCircle {
 

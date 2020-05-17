@@ -24,7 +24,7 @@ public class MainVisual extends Visual {
     {
         startMinim();
           
-        loadAudio("math.mp3");   
+        loadAudio("letgo.mp3");   
         ac = new AudioCircle(this);
         mainMenu = new Menu(this);
         stars = new Stars(this);
@@ -32,10 +32,6 @@ public class MainVisual extends Visual {
         tree = new Tree(this);
         spiral = new Spiral(this);
         colorMode(PApplet.HSB);
-
-        getAudioPlayer().cue(0);
-        getAudioPlayer().play();
-        getAudioPlayer().mute();
 
     }
 
@@ -45,14 +41,13 @@ public class MainVisual extends Visual {
         {
             getAudioPlayer().cue(0);
             getAudioPlayer().play();
-            getAudioPlayer().mute();
+            stars.initialize(); // Reset stars 
         }
         if (keyCode == UP)
         {
-           stars.initialize();
            getAudioPlayer().skip(5000);
         }
-        if (keyCode == RIGHT)
+        if (keyCode == RIGHT && mainMenu.tab < 5)
         {
             mainMenu.tab++;
         }
@@ -82,25 +77,26 @@ public class MainVisual extends Visual {
         rotY += 0.01;   
 
         translate(width / 2, height / 2, 0);
-
-        PApplet.println(frameRate);
         
         switch(mainMenu.tab) {
             case 0:
-                rotateY(rotY);
-                rotateX(rotY);
-                stars.render();
+                mainMenu.render();
                 break;
             case 1:
                 ac.render();
                 break;
             case 2:
-                tree.render();
+                rotateY(rotY);
+                rotateX(rotY);
+                stars.render();
                 break;
             case 3:
                 spiral.render();
                 break;
             case 4:
+                tree.render();
+                break;
+            case 5:
                 waves.render();
                 break;
             default:

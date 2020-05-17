@@ -1,8 +1,8 @@
 package C18430304;
 
-import processing.core.*;
+import processing.core.PApplet;
 
-public class Star {
+public class Star { // A spherical star which floats around the screen
     
     float posX, posY;
     float theta;

@@ -2,7 +2,7 @@ package C18430304;
 
 import processing.core.PApplet;
 
-public class Spiral {
+public class Spiral { // Infinitely looping spiral effect made up of spheres
 
     MainVisual mv;
     float theta;  
@@ -19,13 +19,13 @@ public class Spiral {
         
         h *= 1.2;
 
-        if (h < 200) {
-          mv.pushMatrix();    // Save the current state of transformation (i.e. where are we now)
-          mv.rotate(theta);   // Rotate by theta
-          mv.sphere(h/5);  // Draw the branch
-          mv.translate(0, h); // Move to the end of the branch
+        if (h < 200) { // Spiral while spheres are below a certain size
+          mv.pushMatrix();    
+          mv.rotate(theta);  
+          mv.sphere(h/6);  
+          mv.translate(0, h); 
           spiral(h);
-          mv.popMatrix();     // Whenever we get back here, we "pop" in order to restore the previous matrix state
+          mv.popMatrix();    
           
         }
 
@@ -38,18 +38,26 @@ public class Spiral {
         if (cycle > 255)
             cycle = 0;
 
-        mv.fill(cycle, 255, 255);
+        mv.fill(cycle, 255, 255, 150);
         mv.stroke(cycle+20, 255, 255);
 
         a += 0.25;
         theta = PApplet.radians(a);
 
         spiral(5);
-        mv.rotate(pi/2);
+        mv.rotate(pi/4);
         spiral(5);
-        mv.rotate(pi/2);
+        mv.rotate(pi/4);
         spiral(5);
-        mv.rotate(pi/2);
+        mv.rotate(pi/4);
+        spiral(5);
+        mv.rotate(pi/4);
+        spiral(5);
+        mv.rotate(pi/4);
+        spiral(5);
+        mv.rotate(pi/4);
+        spiral(5);
+        mv.rotate(pi/4);
         spiral(5);
     
     }

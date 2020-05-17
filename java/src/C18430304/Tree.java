@@ -2,7 +2,7 @@ package C18430304;
 
 import processing.core.PApplet;
 
-public class Tree {
+public class Tree { // A tree fractal 
 
     MainVisual mv;
     float theta;  
@@ -16,7 +16,7 @@ public class Tree {
         this.mv = mv;
     }
 
-    public void branch(float h) {
+    public void branch(float h) { 
         
         h *= 0.66; // every branch is 2/3 the size of the last one
 
@@ -50,8 +50,8 @@ public class Tree {
 
         a += 0.25;
         theta = PApplet.radians(a);
-        // Drawing 4 trees 90 degrees from eachother, makes a cool effect.
-        branch(300);
+        // Drawing 4 trees 90 degrees from eachother, makes for a cool effect, albeit a bit intense on the cpu/gpu.
+        branch(300); // 300 is initial branch size
         mv.rotate(pi/2);
         branch(300);
         mv.rotate(pi/2);
