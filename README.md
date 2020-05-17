@@ -20,9 +20,11 @@ you can use other songs by adding them to the data folder and changing line 27 o
 loadAudio("filename.mp3");
 ```
 # How it works
-
+This program works in Java with the use of the Processing library for drawing graphics to the screen, 
+in conjunction with the [Minim library](https://github.com/ddf/Minim), A Java audio library, designed to be used with Processing. This is what I used to manipulate the graphics to achieve things such as an audio band visualiser which 
+will change size depending on how much bass there is for example. A lot of math was used in this program to calculate angles and trajectories. There is a fair bit of circular geometry used to create the audio bands visualiser.
 # What I am most proud of in the assignment
-
+I am probably most proud of my use of mathematics to create visually pleasing effects. Mathematics is not very interesting to me personally, but I found it was needed a fair bit to create 3d graphics. I found myself actually becoming quite interested in the formulas related to drawing circles, etc.
 # Markdown Tutorial
 
 This is *emphasis*
