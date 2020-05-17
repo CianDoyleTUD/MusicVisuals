@@ -5,21 +5,18 @@ public class Menu {
     MainVisual mv;
     int scrH;
     int scrW;
+    int menuH;
+    int menuW;
     int dropdowns = 0;
     int tab = 1;
-    int menuH = 50;
-    boolean enabled = false;
 
     public Menu(MainVisual mv)
     {
         this.mv = mv;
         scrH = this.mv.height;
         scrW = this.mv.width;
-    }
-
-    public void toggle() 
-    {
-        enabled = !enabled;
+        menuH = scrH / 2;
+        menuW = scrW / 2;
     }
 
     public void render()
@@ -27,26 +24,22 @@ public class Menu {
         
         mv.pushMatrix();
 
-        mv.translate(0 - scrW, 0 - scrH);
+        mv.translate(0 - menuW/2, 0 - menuH/2);
         mv.stroke(140, 255, 255);
         mv.fill(140, 255, 255, 50);
-        mv.rect(0, 0, scrW - 1, menuH);
+        mv.rect(0, 0, menuW, menuH);
 
-        mv.fill(0, 255, 255, 255);
+        mv.fill(111, 255, 255, 255);
         mv.textSize(32);
-        mv.text(this.tab, 10, 35); 
+        mv.text("Enter", menuW/2, menuH/2); 
 
         for (int i = 0; i < dropdowns; i++) {
 
-            mv.rect(0, (i * 50) + menuH, scrW - 1, 50);
+            //mv.rect(0, (i * 50) + menuH, scrW - 1, 50);
 
         }
 
         mv.popMatrix();
-
-        /*float posx = PApplet.map(mv.getAudioPlayer().position(), 0, mv.getAudioPlayer().length(), 0, 1000);
-        mv.stroke(0,200,0);
-        mv.line(posx, 0, posx, 100);*/
        
     }
 

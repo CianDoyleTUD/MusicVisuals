@@ -1,6 +1,6 @@
 package C18430304;
 
-import processing.core.*;
+import processing.core.PApplet;
 
 public class Stars {
 
@@ -64,7 +64,7 @@ public class Stars {
             //mv.noFill();
             mv.fill(cycle, 255, 255, 150);
             mv.scale(PApplet.map(mv.getSmoothedAmplitude(), 0, 200, 0, 100));
-            mv.sphere(100);  
+            mv.sphere(70);  
             
             mv.popMatrix();
 

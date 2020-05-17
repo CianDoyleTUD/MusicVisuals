@@ -39,7 +39,7 @@ public class Wave {
             {
                 mv.stroke(140, 255, 255);
                 
-                //mv.rect(200, 200, 200, 200);
+                mv.rect(200, 200, 200, 200);
             }
 
 

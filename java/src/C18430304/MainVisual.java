@@ -6,9 +6,11 @@ import processing.core.PApplet;
 public class MainVisual extends Visual {
 
     AudioCircle ac;
-    Menu options;
+    Menu mainMenu;
     Stars stars;
     Wave waves;
+    Tree tree;
+    Spiral spiral;
     float angle;
     float rotY;
     float[] bands;
@@ -26,11 +28,13 @@ public class MainVisual extends Visual {
     {
         startMinim();
           
-        loadAudio("letgo.mp3");   
+        loadAudio("math.mp3");   
         ac = new AudioCircle(this);
-        options = new Menu(this);
+        mainMenu = new Menu(this);
         stars = new Stars(this);
         waves = new Wave(this); 
+        tree = new Tree(this);
+        spiral = new Spiral(this);
         colorMode(PApplet.HSB);
 
         getAudioPlayer().cue(0);
@@ -49,16 +53,16 @@ public class MainVisual extends Visual {
         }
         if (keyCode == UP)
         {
-           options.toggle();
            stars.initialize();
+           getAudioPlayer().skip(5000);
         }
         if (keyCode == RIGHT)
         {
-            options.tab++;
+            mainMenu.tab++;
         }
-        if (keyCode == LEFT && options.tab > 0)
+        if (keyCode == LEFT && mainMenu.tab > 0)
         {
-            options.tab--;
+            mainMenu.tab--;
         }
     }
 
@@ -83,9 +87,9 @@ public class MainVisual extends Visual {
 
         translate(width / 2, height / 2, 0);
 
-        //PApplet.println(frameRate);
+        PApplet.println(frameRate);
         
-        switch(options.tab) {
+        switch(mainMenu.tab) {
             case 0:
                 rotateY(rotY);
                 rotateX(rotY);
@@ -95,14 +99,13 @@ public class MainVisual extends Visual {
                 ac.render();
                 break;
             case 2:
-                waves.render();
+                tree.render();
+                break;
+            case 3:
+                spiral.render();
                 break;
             default:
                 break;
-        }
-
-        if (options.enabled) {
-            options.render();
         }
     
     }
