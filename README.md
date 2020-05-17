@@ -50,7 +50,7 @@ points[x][y] = PApplet.map(mv.noise(xOff, yOff), 0, 1, 0, 150);
 ```
 This gives an ocean-like terrain and to move it towards the screen I increased the yOff and xOff values to shift the pattern, giving the effect of movement of the camera, hence why it can be infinitely generated.
 # What I am most proud of in the assignment
-I am probably most proud of my use of mathematics to create visually pleasing effects. Mathematics is not very interesting to me personally, but I found it was needed a fair bit to create 3d graphics. I found myself actually becoming quite interested in the formulas related to drawing circles, etc.
+I am probably most proud of my use of mathematics to create visually pleasing effects. Mathematics is not very interesting to me personally, but I found it was actually quite unavoidable to create 3d graphics. I found myself actually becoming quite interested in the formulas related to drawing circles, etc. I managed to learn a lot more about geometry and graphics through self teaching that I ever would have learned in school. I am proud of that.
 # Youtube demonstration
 
 [![YouTube](http://img.youtube.com/vi/N5t7hB70aVk/0.jpg)](https://www.youtube.com/watch?v=N5t7hB70aVk)
